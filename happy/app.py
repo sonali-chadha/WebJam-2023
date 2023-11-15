@@ -10,8 +10,9 @@ CORS(app)
 def index():
     return jsonify({"message":'hey, everything works!'})
 
-
 if(__name__ == "__main__"):
     app.run()
 
+# use ngrok to tunnel server to internet
+# didn't get that far :c
 
