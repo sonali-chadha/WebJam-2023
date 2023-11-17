@@ -13,7 +13,7 @@ facts = [
 # will revise the facts variable to take facts from API
 
 
-@app.route("/")
+@app.route("/") # polar bear
 def home():
    fact = random.choice(facts)
    return render_template("index.html", fact=fact)
@@ -22,4 +22,8 @@ if __name__ == "__main__":
 
 if(__name__ == "__main__"):
     app.run(debug=True)
+
+#@app.route("/") # red wolf 
+
+#@app.route("/") # snow leopard
 
