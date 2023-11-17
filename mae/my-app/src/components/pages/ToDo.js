@@ -7,12 +7,12 @@ const content = {
   eu: {
     title: "polar bear",
     video: '/Home page back.mp4',
-    img: "https://i0.wp.com/wheelchairtravel.org/wp-content/uploads/2023/05/arc-de-triomphe-header.jpg?fit=2500%2C1333&ssl=1",
+    className: 'polar-bear',
   },
   na: {
     title: "red wolf",
-    video: '/Home page back.mp4',
-    img: "https://tb-static.uber.com/prod/image-proc/processed_images/41e448619de9527990482249b90f154c/c9252e6c6cd289c588c3381bc77b1dfc.jpeg",
+    video: '/Redwolf-start.mp4',
+    className: 'red-wolf',
   },
 };
 
@@ -21,20 +21,25 @@ export default function ToDo() {
   return (
     <div className='to-do-container'>
       <video src = {content[params.location].video} autoPlay loop muted/>
+      <div className={content[params.location].className}>
       <h1> {content[params.location].title}</h1>
+
+      <p>Insert a funfact here</p>
 
       <div className='to-do-list'>
         <div className="to-do-btns">
               <Button 
                 link=""
-                className='btns' 
-                buttonStyle='btn--primary'
+                className='btn' 
+                buttonStyle='btn--red'
                 buttonSize='btn--large'
                 onClick={console.log('Todolist clicked')}>
                 ADD TO DO<i/>
               </Button>
           </div>
       </div>
+      </div>
+      
     </div>
 
   );

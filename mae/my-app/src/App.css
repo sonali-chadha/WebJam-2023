@@ -31,6 +31,8 @@
     background-repeat: no-repeat;
     color: #fff;
     font-size: 100px;
+    justify-content: center;
+    align-items: center;
   }
 
   .to-do-container {
@@ -50,6 +52,13 @@
     margin-top: 10px;
   }
 
+  .to-do-container p {
+    margin-top: 200px;
+    color: #8c8c8c;
+    font-size: 16px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
   .to-do-container > video {
     object-fit: cover;
     width: 100%;
@@ -59,11 +68,18 @@
     z-index: -1;
   }
   .to-do-btns{
-    margin-top: 300px;
+    margin-top: 20px;
   }
 
   .to-do-btns .btn{
     margin: 6px;
+  }
+
+  .red-wolf > h1{
+    color: #7a481f;
+    font-size: 70px;
+    font-family: 'VT323', monospace;
+    margin-top: -70px;
   }
     
   .sign-up {
