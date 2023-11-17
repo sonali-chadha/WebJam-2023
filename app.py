@@ -22,22 +22,23 @@ facts = [
     "Bananas are berries, but strawberries are not.",
 ]
 
-@app.route("/")  
+""" @app.route("/")  
 def home():
     fact = random.choice(facts)
-    return render_template("index.html", fact=fact)
-
+    return render_template("temp_index.html", fact=fact)
+ """
 # start of to-dos
-app.config['SQLALCHEMY_DATABASE_URI'] ='sqllite:///todo.db'
+app.config['SQLALCHEMY_DATABASE_URI'] ='sqlite:///todo.db'
 db = SQLAlchemy(app)
 
 class ToDoItem(db.Model):
-    id = db.Column(db.Interger, primary_key=True)
-    content = db.Colum(db.String(200))
-    completed = db.Colum(db.Boolean, default = False)
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.String(200))
+    completed = db.Column(db.Boolean, default = False)
 
     def __repr__(self):
         return f'<TodoItem {self.id}>'
+
 @app.route('/', methods = ['GET', 'POST'])
 def index():
     if request.method == 'POST':
