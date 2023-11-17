@@ -1,0 +1,76 @@
+video {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: -0%;
+    z-index: -1;
+}
+
+
+
+.hero-container {
+
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    object-fit: contain;
+    
+}
+
+.hero-container > h1 {
+    color: #323169;
+    font-size: 100px;
+    font-family: 'VT323', monospace;
+    margin-top: -1px;
+}
+
+.hero-container > p {
+    margin-top: 300px;
+    color: #fff;
+    font-size: 32px;
+    font-family: 'Trebuchet MS', 'Lucide Sans Unicode', 'Luncida Grande', 
+        'Lucida Sans', Arial, san-serif;
+}
+
+.hero-btns {
+    margin-top: 150px;
+}
+
+.hero-btns .btn {
+    margin: 6px;
+}
+
+.fa-play-circle {
+    margin-left: 8px;
+}
+
+@media screen and (max-width:960px) {
+    .hero-container > h1 {
+        font-size: 70px;
+        margin-top: -150px
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .hero-container > h1 {
+        font-size: 70px;
+        margin-top: -30px
+    }
+
+    .hero-container > p {
+        font-size: 30px;
+    }
+
+    .btn-mobile {
+        display: block;
+        text-decoration: none;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}

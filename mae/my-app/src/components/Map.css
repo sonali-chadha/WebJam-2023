@@ -1,0 +1,54 @@
+.map-selected {
+    fill: #c67030;
+}
+  
+.map-unselected {
+    fill: #64b1d0;
+}
+
+.map-selected:hover, .map-unselected:hover {
+    cursor: pointer;
+}
+
+.map-container {
+    background-color: #d8f0fa;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
+
+    
+}
+
+.map-container .map-img {
+    max-width: 100%;
+}
+
+.map-container > h1 {
+    color: #323169;
+    font-family: 'VT323', monospace;
+    font-size: 100px;
+    margin: 50px;
+}
+
+@media screen and (max-width:960px) {
+    .map-container > h1 {
+        font-size: 70px;
+        margin-top: 50px
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .map-container > h1 {
+        font-size: 50px;
+        margin-top: -100px
+    }
+
+    .map-container > p {
+        font-size: 30px;
+    }
+
+}  
