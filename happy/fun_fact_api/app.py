@@ -1,5 +1,9 @@
 from flask import Flask, render_template
 import random
+import requests
+import json
+
+
 app = Flask(__name__)
 facts = [
    "A group of flamingos is called a flamboyance.",
@@ -20,10 +24,34 @@ def home():
 if __name__ == "__main__":
    app.run(debug=True)
 
-if(__name__ == "__main__"):
-    app.run(debug=True)
-
 #@app.route("/") # red wolf 
 
 #@app.route("/") # snow leopard
 
+
+# make request
+url = 'https://jsonplaceholder.typicode.com/users'            # test link
+response = requests.get(url)
+temp_list = []
+if response.status_code == 200:
+   data = response.json()
+   #temp_data = json.load(response)
+   #print(data)                                              # this runs but it prints
+   print(f"Name:{['name']}")
+   for user in data:
+      print(f"Name:{user['name']}")                         # confused why this isn't working 
+      
+else:
+   print(f"ERROR: {response.status_code}")
+
+# handle API? 
+
+# extracted_json = json.loads(data)
+
+""" headers = {
+   'Authorization':'Bearer API-KEY'
+   'Content-Type':'application/json'
+}
+
+response = requests.get('link',headers=headers)
+ """
