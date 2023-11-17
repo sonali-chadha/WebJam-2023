@@ -6,13 +6,18 @@ import  { Button } from '../Button';
 const content = {
   eu: {
     title: "polar bear",
-    video: '/Home page back.mp4',
+    video: '/Polarbear-start.mp4',
     className: 'polar-bear',
   },
   na: {
     title: "red wolf",
     video: '/Redwolf-start.mp4',
     className: 'red-wolf',
+  },
+  as: {
+    title: "snow leopard",
+    video: '/Snowleo-start.mp4',
+    className: 'snow-leo',
   },
 };
 
