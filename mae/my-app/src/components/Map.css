@@ -1,9 +1,9 @@
 .map-selected {
-    fill: #c67030;
+    fill: #d59666;
 }
   
 .map-unselected {
-    fill: #64b1d0;
+    fill: #a0dce6;
 }
 
 .map-selected:hover, .map-unselected:hover {
@@ -19,8 +19,6 @@
     justify-content: center;
     align-items: center;
     object-fit: cover;
-
-    
 }
 
 .map-container .map-img {
@@ -37,14 +35,20 @@
 @media screen and (max-width:960px) {
     .map-container > h1 {
         font-size: 70px;
-        margin-top: 50px
+        margin-top: 50px;
+        margin-bottom: 20px;
+    }
+
+    .map-container .map-img {
+        margin: 10px;
     }
 }
 
 @media screen and (max-width: 768px) {
     .map-container > h1 {
-        font-size: 50px;
-        margin-top: -100px
+        font-size: 60px;
+        margin-top: 25px;
+        margin-bottom: 10px;
     }
 
     .map-container > p {
