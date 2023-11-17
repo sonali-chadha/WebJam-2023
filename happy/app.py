@@ -15,3 +15,17 @@ if(__name__ == "__main__"):
 
 # use ngrok to tunnel server to internet
 # didn't get that far :c
+
+
+
+# if europe: #antartica
+#   go to polar bear page
+# elif russia_asia: #asia
+#   go to snow leopard page
+# elif amurica: #nort murica
+#   go to red fox page
+# else: 
+#   still under works, select different location , ty <3
+
+
+# 
