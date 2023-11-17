@@ -25,15 +25,47 @@
     font-size: 100px;
   }
   
-  .products {
-    background-image: url('/src/components/images/img-1.jpg');
+  .to-do {
     background-position: center;
     background-size: fill;
     background-repeat: no-repeat;
     color: #fff;
     font-size: 100px;
   }
-  
+
+  .to-do-container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    object-fit: contain;
+  }
+
+  .to-do-container > h1 {
+    color: #323169;
+    font-size: 100px;
+    font-family: 'VT323', monospace;
+    margin-top: 10px;
+  }
+
+  .to-do-container > video {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: -0%;
+    z-index: -1;
+  }
+  .to-do-btns{
+    margin-top: 300px;
+  }
+
+  .to-do-btns .btn{
+    margin: 6px;
+  }
+    
   .sign-up {
     background-image: url('/src/components/images/img-8.jpg');
     background-position: center;

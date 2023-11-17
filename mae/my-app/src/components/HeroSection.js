@@ -13,6 +13,7 @@ function HeroSection() {
 
         <div className="hero-btns">
             <Button 
+              link="/sign-up"
                 className='btns' 
                 buttonStyle='btn--primary'
                 buttonSize='btn--large'

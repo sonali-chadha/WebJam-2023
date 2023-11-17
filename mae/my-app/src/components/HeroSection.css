@@ -32,12 +32,12 @@ video {
     margin-top: 300px;
     color: #d8f0fd;
     font-size: 32px;
-    font-family: 'Trebuchet MS', 'Lucide Sans Unicode', 'Luncida Grande', 
-        'Lucida Sans', Arial, san-serif;
+    font-family: 'JetBrains Mono', monospace;
 }
 
 .hero-btns {
     margin-top: 300px;
+    font-family: 'JetBrains Mono', monospace;
 }
 
 .hero-btns .btn {
@@ -51,14 +51,14 @@ video {
 @media screen and (max-width:960px) {
     .hero-container > h1 {
         font-size: 70px;
-        margin-top: -50px
+        margin-top: -20px
     }
 }
 
 @media screen and (max-width: 768px) {
     .hero-container > h1 {
         font-size: 70px;
-        margin-top: -30px
+        margin-top: 10px
     }
 
     .hero-container > p {
