@@ -27,6 +27,7 @@ def home():
     fact = random.choice(facts)
     return render_template("index.html", fact=fact)
 
+# start of to-dos
 app.config['SQLALCHEMY_DATABASE_URI'] ='sqllite:///todo.db'
 db = SQLAlchemy(app)
 
@@ -37,7 +38,6 @@ class ToDoItem(db.Model):
 
     def __repr__(self):
         return f'<TodoItem {self.id}>'
-
 @app.route('/', methods = ['GET', 'POST'])
 def index():
     if request.method == 'POST':
@@ -64,6 +64,8 @@ def delete(item_id):
     db.session.delete(item)
     db.session.commit()
     return redirect ('/')
+
+# end of to-do
 
 # generate age is a mini test run
 # each animal has their respective page
