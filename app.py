@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, redirect #, request
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from openai import OpenAI
 #import random
@@ -7,56 +7,52 @@ from animal_wiki import test_wiki, red_wolf_wiki, snow_leopard_wiki, polar_bear_
 
 client = OpenAI(
     # Defaults to os.environ.get("OPENAI_API_KEY")
-    # Otherwise use: api_key="Your_API_Key",
+   api_key="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"
 )
 
 # this is just to test --> connects to html and displays 1 fact at at time
 app = Flask(__name__)
 
 # start of to-dos --------------------------------------------------------------------------------------------
-app.config['SQLALCHEMY_DATABASE_URI'] ='sqlite:///todo.db'
+# this is just to test --> connects to html and displays 1 fact at at time
+app = Flask(__name__)
+
+# start of to-dos --------------------------------------------------------------------------------------------
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-class ToDoItem(db.Model):
+class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.String(200))
-    completed = db.Column(db.Boolean, default = False)
-
-    def __repr__(self):
-        return f'<TodoItem {self.id}>'
+    title = db.Column(db.String(100))
+    complete = db.Column(db.Boolean)
 
 @app.route("/")
 def home():
-    items = ToDoItem.query.all()
-    return render_template('index.html',items=items)
+    todo_list = Todo.query.all()
+    return render_template("base.html", todo_list=todo_list)
 
-@app.route('/', methods = ['GET', 'POST'])
-def index():
-    if request.method == 'POST':
-        content = request.form['content']
-        if content.strip() != ' ':
-            new_item = ToDoItem(content=content)
-            db.session.add(new_item)
-            db.session.commit()
-        return redirect('/')
-    else:
-        items = ToDoItem.query.all()
-        return render_template('index.html',items=items)
-
-
-@app.route('/complete/<int:item_id>')
-def complete(item_id):
-    item = ToDoItem.query.getor404(item_id)
-    item.completed = True
+@app.route("/add", methods=["POST"])
+def add():
+    title = request.form.get("title")
+    new_todo = Todo(title=title, complete=False)
+    db.session.add(new_todo)
     db.session.commit()
-    return redirect ('/')
+    return redirect(url_for("home"))
 
-@app.route('/delete/<int:item_id>')
-def delete(item_id):
-    item = ToDoItem.query.getor404(item_id)
-    db.session.delete(item)
+@app.route("/update/<int:todo_id>")
+def update(todo_id):
+    todo = Todo.query.filter_by(id=todo_id).first()
+    todo.complete = not todo.complete
     db.session.commit()
-    return redirect ('/')
+    return redirect(url_for("home"))
+
+@app.route("/delete/<int:todo_id>")
+def delete(todo_id):
+    todo = Todo.query.filter_by(id=todo_id).first()
+    db.session.delete(todo)
+    db.session.commit()
+    return redirect(url_for("home"))
 
 # end of to-do -----------------------------------------------------------------------------------------------------
 
@@ -155,9 +151,9 @@ def generate_sl():
     return jsonify({"message": animal_facts})
 
 if __name__ == "__main__":
-    app.run(debug=True)
-
-
+    with app.app_context():
+        db.create_all()
+        app.run(debug=True)
 
 # make request
 # url = "https://jsonplaceholder.typicode.com/users"  # test link
