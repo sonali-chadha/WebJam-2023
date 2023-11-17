@@ -37,6 +37,7 @@ class ToDoItem(db.Model):
 
     def __repr__(self):
         return f'<TodoItem {self.id}>'
+
 @app.route('/', methods = ['GET', 'POST'])
 def index():
     if request.method == 'POST':
