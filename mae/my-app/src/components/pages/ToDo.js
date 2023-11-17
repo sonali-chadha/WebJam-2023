@@ -19,6 +19,21 @@ const content = {
     video: '/Snowleo-start.mp4',
     className: 'snow-leo',
   },
+  sa: {
+    title: "The South America Page is Still Being Built!",
+    video: '/Home page back.mp4',
+    className: 'not-built',
+  },
+  af: {
+    title: "The Africa Page is Still Being Built!",
+    video: '/Home page back.mp4',
+    className: 'not-built',
+  },
+  oc: {
+    title: "The Oceania Page is Still Being Built!",
+    video: '/Home page back.mp4',
+    className: 'not-built',
+  },
 };
 
 export default function ToDo() {

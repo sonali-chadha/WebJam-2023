@@ -96,6 +96,14 @@
     font-family: 'VT323', monospace;
     margin-top: -70px;
   }
+  .not-built> h1{
+    color: #323169;
+    font-size: 70px;
+    font-family: 'VT323', monospace;
+    margin: 50px;
+    margin-top: -10px;
+    margin-bottom: 300px;
+  }
     
   .sign-up {
     background-image: url('/src/components/images/img-8.jpg');
@@ -105,3 +113,19 @@
     color: #fff;
     font-size: 100px;
   }
+  @media screen and (max-width:960px) {
+    .not-built> h1 {
+        font-size: 70px;
+        margin-top: -20px
+    }
+}
+
+@media screen and (max-width: 768px) {
+    
+    .not-built> h1{
+        font-size: 55px;
+        margin-top: 10px;
+        margin-bottom: 250px;
+    }
+
+}
