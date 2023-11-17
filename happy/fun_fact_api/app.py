@@ -10,6 +10,7 @@ client = OpenAI(
     # Otherwise use: api_key="Your_API_Key",
 )
 
+# this is just to test --> connects to html and displays 1 fact at at time
 app = Flask(__name__)
 facts = [
     "A group of flamingos is called a flamboyance.",
@@ -19,9 +20,6 @@ facts = [
     "The first webcam was created to check the coffee pot at Cambridge University.",
     "Bananas are berries, but strawberries are not.",
 ]
-# test to see if this runs
-# will revise the facts variable to take facts from API
-
 
 @app.route("/")  
 def home():
@@ -29,7 +27,10 @@ def home():
     return render_template("index.html", fact=fact)
 
 
-# @app.route("/") # red wolf
+# generate age is a mini test run
+# each animal has their respective page
+# will run 1 time to get facts from openai API and will display the same facts ran 
+# so less monies spent el oh el
 
 facts_holder=[]
 RW_facts_holder=[]
@@ -43,21 +44,19 @@ def generate():
         return jsonify({"message": facts_holder})
         
     chat_completion = client.chat.completions.create(
-        model="gpt-3.5-turbo-1106",
+        model="gpt-3.5-turbo-1106", #"gpt-4.0-preview-1106"
         temperature=1,
         max_tokens=512,
         frequency_penalty=0.1,
         presence_penalty=0.2,
         messages=test_wiki              # from animal_wiki file
     )
-
     animal_string = chat_completion.choices[0].message.content
     animal_facts = animal_string.split("\n")
     while ("" in animal_facts):
         animal_facts.remove("")
     facts_holder = animal_facts
     return jsonify({"message": animal_facts})
-
 
 @app.route("/red_wolf")  # red_wolf
 def generate_rw():
@@ -73,15 +72,12 @@ def generate_rw():
         presence_penalty=0.2,
         messages=red_wolf_wiki              # from animal_wiki file
     )
-
     animal_string = chat_completion.choices[0].message.content
     animal_facts = animal_string.split("\n")
     while ("" in animal_facts):
         animal_facts.remove("")
     RW_facts_holder = animal_facts
     return jsonify({"message": animal_facts})
-
-
 
 @app.route("/polar_bear")  # polar bear
 def generate_pb():
@@ -97,14 +93,12 @@ def generate_pb():
         presence_penalty=0.2,
         messages=polar_bear_wiki              # from animal_wiki file
     )
-
     animal_string = chat_completion.choices[0].message.content
     animal_facts = animal_string.split("\n")
     while ("" in animal_facts):
         animal_facts.remove("")
     PB_facts_holder = animal_facts
     return jsonify({"message": animal_facts})
-
 
 @app.route("/snow_leopard")  # polar bear
 def generate_sl():
@@ -120,7 +114,6 @@ def generate_sl():
         presence_penalty=0.2,
         messages=snow_leopard_wiki              # from animal_wiki file
     )
-
     animal_string = chat_completion.choices[0].message.content
     animal_facts = animal_string.split("\n")
     while ("" in animal_facts):
