@@ -2,12 +2,13 @@ from flask import Flask, render_template, jsonify
 from openai import OpenAI
 import random
 import requests
+from animal_wiki import test_wiki, red_wolf_wiki, snow_leopard_wiki, polar_bear_wiki
+
 
 client = OpenAI(
     # Defaults to os.environ.get("OPENAI_API_KEY")
     # Otherwise use: api_key="Your_API_Key",
 )
-
 
 app = Flask(__name__)
 facts = [
@@ -22,7 +23,7 @@ facts = [
 # will revise the facts variable to take facts from API
 
 
-@app.route("/a")  # polar bear
+@app.route("/")  
 def home():
     fact = random.choice(facts)
     return render_template("index.html", fact=fact)
@@ -30,36 +31,108 @@ def home():
 
 # @app.route("/") # red wolf
 
+facts_holder=[]
+RW_facts_holder=[]
+SL_facts_holder=[]
+PB_facts_holder=[]
 
-@app.route("/generate")  # snow leopard
+@app.route("/generate")  # generate animal fun facts
 def generate():
+    global facts_holder 
+    if len(facts_holder)>0:
+        return jsonify({"message": facts_holder})
+        
     chat_completion = client.chat.completions.create(
         model="gpt-3.5-turbo-1106",
         temperature=1,
         max_tokens=512,
         frequency_penalty=0.1,
         presence_penalty=0.2,
-        messages=[
-            {
-                "role": "system",
-                "content": "You are helping raise awareness for an endangered animal. You'll be given the Wikipedia article about the animal. Respond with 10 fun facts about interesting quirks of the specified animal. Write at a 5th grade level. Each fun fact should be 2-3 sentences long. Put a new line between each fun fact. Do not include any introduction, bullet points, or numbers.",
-            },
-            {
-                "role": "user",
-                "content": "Red wolf\nThe red wolf (Canis rufus)[2][6][7] is a canine native to the\nsoutheastern United States. Its size is intermediate between the\ncoyote (Canis latrans) and gray wolf (Canis lupus).\n[8]\nThe red wolf's taxonomic classification as being a separate\nspecies has been contentious for nearly a century, being\nclassified either as a subspecies of the gray wolf Canis lupus\nrufus,\n[9]",
-            },
-        ],
+        messages=test_wiki              # from animal_wiki file
     )
 
     animal_string = chat_completion.choices[0].message.content
     animal_facts = animal_string.split("\n")
     while ("" in animal_facts):
         animal_facts.remove("")
+    facts_holder = animal_facts
     return jsonify({"message": animal_facts})
 
 
+@app.route("/red_wolf")  # red_wolf
+def generate_rw():
+    global RW_facts_holder 
+    if len(RW_facts_holder)>0:
+        return jsonify({"message": RW_facts_holder})
+        
+    chat_completion = client.chat.completions.create(
+        model="gpt-3.5-turbo-1106",
+        temperature=1,
+        max_tokens=512,
+        frequency_penalty=0.1,
+        presence_penalty=0.2,
+        messages=red_wolf_wiki              # from animal_wiki file
+    )
+
+    animal_string = chat_completion.choices[0].message.content
+    animal_facts = animal_string.split("\n")
+    while ("" in animal_facts):
+        animal_facts.remove("")
+    RW_facts_holder = animal_facts
+    return jsonify({"message": animal_facts})
+
+
+
+@app.route("/polar_bear")  # polar bear
+def generate_pb():
+    global PB_facts_holder 
+    if len(PB_facts_holder)>0:
+        return jsonify({"message": PB_facts_holder})
+        
+    chat_completion = client.chat.completions.create(
+        model="gpt-3.5-turbo-1106",
+        temperature=1,
+        max_tokens=512,
+        frequency_penalty=0.1,
+        presence_penalty=0.2,
+        messages=polar_bear_wiki              # from animal_wiki file
+    )
+
+    animal_string = chat_completion.choices[0].message.content
+    animal_facts = animal_string.split("\n")
+    while ("" in animal_facts):
+        animal_facts.remove("")
+    PB_facts_holder = animal_facts
+    return jsonify({"message": animal_facts})
+
+
+@app.route("/snow_leopard")  # polar bear
+def generate_sl():
+    global SL_facts_holder 
+    if len(SL_facts_holder)>0:
+        return jsonify({"message": SL_facts_holder})
+        
+    chat_completion = client.chat.completions.create(
+        model="gpt-3.5-turbo-1106",
+        temperature=1,
+        max_tokens=512,
+        frequency_penalty=0.1,
+        presence_penalty=0.2,
+        messages=snow_leopard_wiki              # from animal_wiki file
+    )
+
+    animal_string = chat_completion.choices[0].message.content
+    animal_facts = animal_string.split("\n")
+    while ("" in animal_facts):
+        animal_facts.remove("")
+    SL_facts_holder = animal_facts
+    return jsonify({"message": animal_facts})
+
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+
 # make request
 # url = "https://jsonplaceholder.typicode.com/users"  # test link
 # response = requests.get(url)
