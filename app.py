@@ -1,10 +1,9 @@
-from flask import Flask, render_template, jsonify, request, redirect
+from flask import Flask, render_template, jsonify, redirect #, request
 from flask_sqlalchemy import SQLAlchemy
 from openai import OpenAI
-import random
-import requests
+#import random
+#import requests
 from animal_wiki import test_wiki, red_wolf_wiki, snow_leopard_wiki, polar_bear_wiki
-
 
 client = OpenAI(
     # Defaults to os.environ.get("OPENAI_API_KEY")
@@ -13,21 +12,8 @@ client = OpenAI(
 
 # this is just to test --> connects to html and displays 1 fact at at time
 app = Flask(__name__)
-facts = [
-    "A group of flamingos is called a flamboyance.",
-    "The longest English word is 189,819 letters long and takes more than 3 hours to pronounce.",
-    "The shortest war in history was between Britain and Zanzibar in 1896. Zanzibar surrendered after just 38 minutes.",
-    "There are more possible iterations of a game of chess than there are atoms in the known universe.",
-    "The first webcam was created to check the coffee pot at Cambridge University.",
-    "Bananas are berries, but strawberries are not.",
-]
 
-""" @app.route("/")  
-def home():
-    fact = random.choice(facts)
-    return render_template("temp_index.html", fact=fact)
- """
-# start of to-dos
+# start of to-dos --------------------------------------------------------------------------------------------
 app.config['SQLALCHEMY_DATABASE_URI'] ='sqlite:///todo.db'
 db = SQLAlchemy(app)
 
@@ -38,6 +24,11 @@ class ToDoItem(db.Model):
 
     def __repr__(self):
         return f'<TodoItem {self.id}>'
+
+@app.route("/")
+def home():
+    items = ToDoItem.query.all()
+    return render_template('index.html',items=items)
 
 @app.route('/', methods = ['GET', 'POST'])
 def index():
@@ -51,7 +42,8 @@ def index():
     else:
         items = ToDoItem.query.all()
         return render_template('index.html',items=items)
-    
+
+
 @app.route('/complete/<int:item_id>')
 def complete(item_id):
     item = ToDoItem.query.getor404(item_id)
@@ -66,7 +58,7 @@ def delete(item_id):
     db.session.commit()
     return redirect ('/')
 
-# end of to-do
+# end of to-do -----------------------------------------------------------------------------------------------------
 
 # generate age is a mini test run
 # each animal has their respective page
