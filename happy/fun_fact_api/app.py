@@ -1,4 +1,5 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request, redirect
+from flask_sqlalchemy import SQLAlchemy
 from openai import OpenAI
 import random
 import requests
@@ -26,6 +27,42 @@ def home():
     fact = random.choice(facts)
     return render_template("index.html", fact=fact)
 
+app.config['SQLALCHEMY_DATABASE_URI'] ='sqllite:///todo.db'
+db = SQLAlchemy(app)
+
+class ToDoItem(db.Model):
+    id = db.Column(db.Interger, primary_key=True)
+    content = db.Colum(db.String(200))
+    completed = db.Colum(db.Boolean, default = False)
+
+    def __repr__(self):
+        return f'<TodoItem {self.id}>'
+@app.route('/', methods = ['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        content = request.form['content']
+        if content.strip() != ' ':
+            new_item = ToDoItem(content=content)
+            db.session.add(new_item)
+            db.session.commit()
+        return redirect('/')
+    else:
+        items = ToDoItem.query.all()
+        return render_template('index.html',items=items)
+    
+@app.route('/complete/<int:item_id>')
+def complete(item_id):
+    item = ToDoItem.query.getor404(item_id)
+    item.completed = True
+    db.session.commit()
+    return redirect ('/')
+
+@app.route('/delete/<int:item_id>')
+def delete(item_id):
+    item = ToDoItem.query.getor404(item_id)
+    db.session.delete(item)
+    db.session.commit()
+    return redirect ('/')
 
 # generate age is a mini test run
 # each animal has their respective page
