@@ -1,6 +1,7 @@
 from flask import Flask, render_template, jsonify, redirect #, request
 from flask_sqlalchemy import SQLAlchemy
 from openai import OpenAI
+from flask_cors import CORS
 import random
 #import requests
 from animal_wiki import test_wiki, red_wolf_wiki, snow_leopard_wiki, polar_bear_wiki
@@ -11,6 +12,7 @@ client = OpenAI(
 )
 
 app = Flask(__name__)
+cors = CORS(app)
 
 facts = [
     "A group of flamingos is called a flamboyance.",
