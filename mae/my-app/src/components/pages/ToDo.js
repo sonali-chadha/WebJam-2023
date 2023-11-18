@@ -50,18 +50,8 @@ export default function ToDo(props) {
 
       <AnimalFact animalName = {props.animalName}> </AnimalFact>
 
-
       <div className='to-do-list'>
-        <div className="to-do-btns">
-              <Button 
-                link=""
-                className='btn' 
-                buttonStyle='btn--red'
-                buttonSize='btn--large'
-                onClick={console.log('Todolist clicked')}>
-                ADD TO DO<i/>
-              </Button>
-          </div>
+        
       </div>
       </div>
       

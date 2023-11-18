@@ -3,39 +3,43 @@ import '../App.css';
 import  { Button } from './Button';
 import './ToDoList.css';
 
+const TEMP = [
+  {id: '1', complete: false, title: 'first'},
+  {id: '2', complete: true, title: 'second'}
+]
 
 function ToDoList() {
   return (
     <div className='to-do-list-container'>
-        <div style="margin-top: 50px;" class="ui container">
-        <h1 class="ui center aligned header">To Do App</h1>
+        <div className="ui container">
+        <h1 className="ui center aligned header">To Do App</h1>
 
-        <form class="ui form" action="/add" method="post">
-            <div class="field">
+        <form className="ui form" action="/add" method="post">
+            <div className="field">
                 <label>Todo Title</label>
                 <input type="text" name="title" placeholder="Enter Todo..."/>
             </div>
-            <button class="ui blue button" type="submit">Add</button>
+            <button className="ui blue button" type="submit">Add</button>
         </form>
 
-        <hr>
-        {% for todo in todo_list %}
-        <div class="ui segment">
-            <p class="ui big header">{{todo.id }} | {{ todo.title }}</p>
-        
-            {% if todo.complete == False %}
-            <span class="ui gray label">Not Complete</span>
-            {% else %}
-            <span class="ui green label">Completed</span>
-            {% endif %}
-        
-            <a class="ui blue button" href="/update/{{ todo.id }}">Update</a>
-            <a class="ui red button" href="/delete/{{ todo.id }}">Delete</a>
-        </div>
-        {% endfor %}
+        <hr/>
+        {
+          TEMP.map(todo => {
+            return <div className="ui segment">
+                <p className="ui big header">{todo.title || todo.id}</p>
+            
+                <span className={todo.complete ? "ui green label" : "ui gray label"}>
+                  {todo.complete ? "Completed" : "Not Complete"}</span>
+            
+                <a className="ui blue button" href="/update/{{ todo.id }}">Update</a>
+                <a className="ui red button" href="/delete/{{ todo.id }}">Delete</a>
+            </div>
+          })
+        }
+
         </div>
     </div>
   );
 }
 
-export default ToDoList;
+export {ToDoList};

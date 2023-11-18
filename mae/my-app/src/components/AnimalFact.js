@@ -1,11 +1,12 @@
 import React, { useEffect, useState} from "react";
 import "../App.css";
 import { Button } from "./Button";
+import "./AnimalFacts.css";
 
 function AnimalFact(props) {
     const [animalFacts, setFacts] = useState([])
     const [currentFact, setCurrent] = useState(0)
-    const url = "https://be83-128-195-97-37.ngrok-free.app/" + props.animalName
+    const url = "https://8925-128-195-97-37.ngrok-free.app/" + props.animalName
     useEffect(() => {
     const fetchFact = async () => {
         const result = await fetch('https://corsproxy.io/?' + encodeURIComponent(url), {
@@ -29,6 +30,7 @@ function AnimalFact(props) {
     return (
         <>
             <p>{animalFacts[currentFact]}</p>
+            <p>fact fact fact facjdlfkdssjklgajdslgjalk</p>
 
             <Button 
                 link=""
