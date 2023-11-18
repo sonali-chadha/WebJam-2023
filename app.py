@@ -10,7 +10,6 @@ client = OpenAI(
     # Otherwise use: api_key="Your_API_Key",
 )
 
-# this is just to test --> connects to html and displays 1 fact at at time
 app = Flask(__name__)
 
 # start of to-dos --------------------------------------------------------------------------------------------
@@ -42,7 +41,6 @@ def index():
     else:
         items = ToDoItem.query.all()
         return render_template('index.html',items=items)
-
 
 @app.route('/complete/<int:item_id>')
 def complete(item_id):
