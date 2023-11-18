@@ -23,13 +23,23 @@
 
 .map-container .map-img {
     max-width: 100%;
+    height: 40vh;
 }
 
 .map-container > h1 {
     color: #323169;
     font-family: 'VT323', monospace;
     font-size: 100px;
-    margin: 50px;
+    margin-top: 5px;
+    margin-bottom: 25px;
+}
+
+.map-btns {
+    margin-top: 30px;
+}
+
+.map-btns .btns{
+    margin: 6px;
 }
 
 @media screen and (max-width:960px) {
@@ -42,17 +52,26 @@
     .map-container .map-img {
         margin: 10px;
     }
+
+    .map-btns {
+        margin-top: 30px;
+    }
 }
 
 @media screen and (max-width: 768px) {
     .map-container > h1 {
-        font-size: 60px;
-        margin-top: 25px;
-        margin-bottom: 10px;
+        font-size: 70px;
+        margin: 20px;
+        margin-top: 15px;
+        margin-bottom: 18px;
     }
 
     .map-container > p {
         font-size: 30px;
+    }
+
+    .map-btns {
+        margin-top: 20px;
     }
 
 }  
