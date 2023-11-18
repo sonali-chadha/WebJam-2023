@@ -19,7 +19,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} exact />
         <Route path='/services' element={<Services/>} exact />
-        <Route path='/map/:location' element={<ToDo/>}  />
+        <Route path='/map/:location' element={<ToDo animalName ='red_wolf'/>}  />
         <Route path='/sign-up' element={<SignUp/>} exact />
       </Routes>
     </Router>

@@ -2,6 +2,8 @@ import React from "react";
 import "../../App.css";
 import { useParams } from "react-router-dom";
 import  { Button } from '../Button';
+import {AnimalFact} from "../AnimalFact.js";
+
 
 const content = {
   eu: {
@@ -36,7 +38,9 @@ const content = {
   },
 };
 
-export default function ToDo() {
+export default function ToDo(props) {
+
+
   const params = useParams();
   return (
     <div className='to-do-container'>
@@ -44,7 +48,8 @@ export default function ToDo() {
       <div className={content[params.location].className}>
       <h1> {content[params.location].title}</h1>
 
-      <p>Insert a funfact here</p>
+      <AnimalFact animalName = {props.animalName}> </AnimalFact>
+
 
       <div className='to-do-list'>
         <div className="to-do-btns">
